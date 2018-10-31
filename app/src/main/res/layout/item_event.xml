@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="96dp"
-                                    android:layout_margin="10dp"
-                                    app:cardCornerRadius="8dp"
-                                    app:cardElevation="10dp">
+<android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="10dp" android:focusable="true">
 
     <LinearLayout
             android:weightSum="10"
@@ -16,10 +19,13 @@
         <TextView
                 android:id="@+id/txtTime"
                 android:layout_width="0dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="4:45AM"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
                 android:background="@color/item_colordate"
-                android:textColor="@android:color/white"/>
+                android:textColor="#FFF"/>
 
         <LinearLayout
                 android:layout_marginStart="8dp"
@@ -34,17 +40,17 @@
                     android:id="@+id/txtTitle"
                     android:textSize="18sp"
                     android:gravity="center"
+                    android:layout_margin="8dp"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:text="Event"
                     android:textStyle="bold"/>
             <TextView
-                    android:layout_weight="1"
                     android:gravity="center"
                     android:id="@+id/txtExplanation"
+                    android:layout_margin="8dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="description"/>
         </LinearLayout>
 
@@ -52,7 +58,6 @@
                 android:id="@+id/imgPicture"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_margin="16dp"
                 android:layout_weight="2"/>
 
     </LinearLayout>

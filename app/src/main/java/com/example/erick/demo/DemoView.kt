@@ -2,7 +2,9 @@ package com.example.erick.demo
 
 interface DemoView{
     fun hideText()
-    fun showText(currentDate: String)
+    fun showDate(currentDate: String)
     fun showCard(event: Event)
     fun showError()
+    fun showLoadingView()
+    fun hideLoadingView()
 }
