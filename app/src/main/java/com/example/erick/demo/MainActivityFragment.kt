@@ -7,15 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_main.*
 import java.util.*
 
 
-/**
- * A placeholder fragment containing a simple view.
- */
 class MainActivityFragment : Fragment(), DemoView {
-    val presenter = DemoPresenter(this)
+
+    private val presenter = DemoPresenter(this)
     lateinit var recyclerViewAdapter: EventAdapter
 
     override fun onCreateView(
@@ -27,46 +26,53 @@ class MainActivityFragment : Fragment(), DemoView {
 
     override fun onResume() {
         super.onResume()
+        setupUi()
+    }
+
+    private fun setupUi() {
         recyclerViewAdapter = EventAdapter()
         recyclerEvent.adapter = recyclerViewAdapter
 
-        btnPickDate.setOnClickListener {
+        textPickDate.setOnClickListener {
             val currentDate = Calendar.getInstance()
             val year = currentDate.get(Calendar.YEAR)
             val month = currentDate.get(Calendar.MONTH)
             val day = currentDate.get(Calendar.DAY_OF_MONTH)
 
-            val mDatePicker = DatePickerDialog(
+            DatePickerDialog(
                 activity!!,
-                DatePickerDialog.OnDateSetListener { _, year, month, day ->
-                    presenter.fetchNasaApiData(
-                        year,
-                        month,
-                        day
-                    )
+                DatePickerDialog.OnDateSetListener { _, y, m, d ->
+                    presenter.fetchNasaApiData(y, m, d)
                 },
-                year,
-                month,
-                day
-            )
-            mDatePicker.show()
+                year, month, day
+            ).show()
         }
     }
 
     override fun showError() {
-        Toast.makeText(context, "error :(", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Error fetching data :(", Toast.LENGTH_SHORT).show()
     }
 
     override fun hideText() {
         textDate.visibility = View.GONE
     }
 
-    override fun showText(currentDate: String) {
+    override fun showDate(currentDate: String) {
         textDate.visibility = View.VISIBLE
         textDate.text = currentDate
+
+        textPickDate.setText(currentDate)
     }
 
     override fun showCard(event: Event) {
         recyclerViewAdapter.updateEvent(event)
+    }
+
+    override fun showLoadingView() {
+        progressBar.visibility = View.VISIBLE
+    }
+
+    override fun hideLoadingView() {
+        progressBar.visibility = View.GONE
     }
 }

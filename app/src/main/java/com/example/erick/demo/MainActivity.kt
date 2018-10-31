@@ -10,6 +10,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        // To show home icon indicator at right-top
+        supportActionBar?.setDisplayShowHomeEnabled(true);
+        supportActionBar?.setIcon(R.drawable.ic_home_black_24dp)
+
     }
 
 }
+
+
+3r1ck151097
